@@ -20,10 +20,17 @@ export class FormArrayComponent implements OnInit {
   get topics() {
     return this.form.get('topics') as FormArray
   }
+
   addTopic(topic: HTMLInputElement) {
     let trimmed = topic.value.trim();
     if(trimmed != '')
     (this.topics).push(new FormControl(topic.value, Validators.required));
     topic.value = '';
   }
+
+  removeTopic(topic) {
+    let index = this.topics.controls.indexOf(topic);
+    this.topics.removeAt(index);
+  }
+
 }

@@ -6,6 +6,7 @@
   <li
     class="group-list-item"
     *ngFor="let topic of topics['controls']"
+    (click)="removeTopic(topic)"
   >
     {{ topic.value }}
   </li>
