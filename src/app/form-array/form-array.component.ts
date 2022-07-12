@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-array',
@@ -12,4 +13,17 @@ export class FormArrayComponent implements OnInit {
   ngOnInit() {
   }
 
+  form = new FormGroup({
+    topics: new FormArray([])
+  })
+
+  get topics() {
+    return this.form.get('topics') as FormArray
+  }
+  addTopic(topic: HTMLInputElement) {
+    let trimmed = topic.value.trim();
+    if(trimmed != '')
+    (this.topics).push(new FormControl(topic.value, Validators.required));
+    topic.value = '';
+  }
 }
